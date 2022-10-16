@@ -39,6 +39,22 @@
     grid-template-columns: auto auto;
 }
 
+.input-option {
+    text-align: center;
+    border: 2px solid black;
+    transform: translateY(-5px);
+    border-width: 0px 0px 2px 0px;
+    font-family: 'Comfortaa', cursive;
+    width: 7rem;
+    color: rgb(74, 74, 74);
+    font-size: 1.2rem;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
 
 /* .mcq-option:checked~.rad-text {
         color: hsl(0, 0%, 40%);

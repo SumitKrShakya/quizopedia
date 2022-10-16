@@ -6,7 +6,7 @@ import BG from "../images/bg.jpg";
 import Next from "../images/next.svg";
 import Prev from "../images/prev.svg";
 import Profile from "../images/profile.png";
-import { useSprings, animated } from "react-spring";
+import { useSprings, animated, useSpring } from "react-spring";
 import "../components/card.css";
 
 data.reverse();
@@ -25,61 +25,89 @@ const colors = [
 ];
 colors.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
-
-
 // console.log(data);
 
 const MainPage = () => {
-  const [test, setTest] = useState(false)
+  const [test, setTest] = useState(false);
   const [currQue, setCurrQue] = useState(0);
-
+  const [answer, setAnswer] = useState(Array(10).fill(undefined));
+  console.log(answer);
   const dataSpring = colors.map((e, i) => {
     let temp = `${Math.round(Math.random() * 40 - 20)}px,${Math.round(
       Math.random() * 40 - 20
-    )}`
+    )}`;
 
-    if(currQue > 9-i){
-      temp = `${i%2?"1000":"-1000"}px,${0}px`;
+    if (currQue > 9 - i) {
+      temp = `${i % 2 ? "1000" : "-1000"}px,${0}px`;
     }
+
+    let angle = `${Math.round(Math.random() * 20 - 10)}`;
+    if (currQue === 9 - i) {
+      angle = `0`;
+    }
+    // console.log(currQue,i,"angle",angle,data[i].que)
 
     return {
       id: `colors${i}`,
       from: {
         y: -1000,
-        transform: `rotate(0deg) translate(${Math.round((Math.random()*1000)-500)}px,0px)`,
+        transform: `rotate(0deg) translate(${Math.round(
+          Math.random() * 1000 - 500
+        )}px,0px)`,
         backgroundColor: "white",
       },
       to: {
         y: 0,
-        x:0,
-        transformOrigin: `${Math.round((Math.random()*100))}% ${Math.round((Math.random()*100))}%`,
+        x: 0,
+        transformOrigin: `${Math.round(Math.random() * 100)}% ${Math.round(
+          Math.random() * 100
+        )}%`,
         backgroundColor: `${e}`,
-        transform: `rotate(${Math.round(
-          (Math.random() *  20)-10
-        )}deg) translate(${temp}px)`,
+        transform: `rotate(${angle}deg) translate(${temp}px)`,
       },
       delay: i * 100,
     };
   });
 
+  // const nextSpring = useSpring({
+  //   from: {
+  //     y: "150px",
+  //   },
+  //   to: {
+  //     y: "0vh",
+  //   },
+  //   config: { mass: 10, tention:10 },
+  // });
 
-  console.log("spring",dataSpring.map((e)=>e.to.transformOrigin))
+  const mainSpring = useSpring({
+    form:{
+      transform:``
+    },
+    to:{
+      transform:``
+    }
+  })
+
+  // console.log("spring",dataSpring.map((e)=>e.to.transformOrigin))
   const spring = useSprings(
     dataSpring.length,
     dataSpring.map(({ id, ...config }) => {
       // console.log(config);
       return config;
     })
-  )
-  const onClickNext = ()=>{
-    setCurrQue(currQue+1);
-    
-  } 
-  const onClickPrev = ()=>{
-    setCurrQue(currQue-1);
-    
-  } 
-  const temp = [{transform:`0`}]
+  );
+  const onClickNext = () => {
+    setCurrQue(currQue + 1);
+  };
+  const onClickPrev = () => {
+    setCurrQue(currQue - 1);
+  };
+
+  const answerHandler = (i, ans) => {
+    let temp = answer;
+    temp[i] = ans;
+    setAnswer(temp);
+  };
 
   return (
     <FormContainer>
@@ -89,26 +117,44 @@ const MainPage = () => {
         ))}
       </div>
       <div className="cards-container">
-        {spring.map((spring, index) => (
-          <animated.div
-            style={{ ...spring }}
-            className="form-border"
-            key={"card-" + index}
-          >
-            <Card currQue={currQue} index={index} data={data[index]} />
-          </animated.div>
-        ))}
+        {spring.map((spring, index) => {
+          // console.log("card-" + index, "cards-" + index);
+          return (
+            <animated.div
+              style={{ ...spring }}
+              className="form-border"
+              key={"card-" + index}
+            >
+              <Card
+                key={"cards-" + index}
+                answerHandler={answerHandler}
+                currQue={currQue}
+                index={index}
+                data={data[index]}
+              />
+            </animated.div>
+          );
+        })}
       </div>
       <div className="bottom">
-        <div onClick={()=>{onClickPrev()}} className="left">
+        <div
+          onClick={() => {
+            onClickPrev();
+          }}
+          className="left"
+        >
           <img src={Prev} alt="" />
         </div>
-        <div className="center">
-        {currQue+1}/10
-        </div>
-        <div onClick={()=>{onClickNext()}} className="right">
+        <div className="center">{currQue + 1}/10</div>
+        <animated.div
+          // style={{ ...nextSpring }}
+          onClick={() => {
+            onClickNext();
+          }}
+          className="right"
+        >
           <img src={Next} alt="" />
-        </div>
+        </animated.div>
       </div>
 
       <img className="profile" src={Profile} alt="" />
@@ -169,10 +215,10 @@ const FormContainer = styled.div`
     .center {
       flex: 5;
       text-align: center;
-      padding-top:6vh;
+      padding-top: 6vh;
       font-weight: bolder;
-      font-size:1.3rem;
-      font-family: 'Comfortaa', cursive;
+      font-size: 1.3rem;
+      font-family: "Comfortaa", cursive;
     }
     .right {
       // padding:0px 20px;
