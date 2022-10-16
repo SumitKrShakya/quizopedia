@@ -159,9 +159,9 @@ const MainPage = () => {
         </div>
       </animated.div>
       <img className="profile" src={Profile} alt="" />
-      <div onClick={() => {onClickNext();}} className="test"></div>
-      <div onClick={() => {onClickNext();}} className="test0"></div>
-      <div onClick={() => {onClickNext();}} className="test2"></div>
+      <div onClick={() => {onClickPrev();}} className="test"></div>
+      <div onClick={() => {onClickPrev();}} className="test0"></div>
+      <div onClick={() => {onClickPrev();}} className="test2"></div>
     </FormContainer>
   );
 };
