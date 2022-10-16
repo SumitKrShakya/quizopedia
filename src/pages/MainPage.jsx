@@ -12,16 +12,16 @@ import "../components/card.css";
 data.reverse();
 
 const colors = [
-  "#EEEEEE",
-  "#1BADFF",
-  "#FF2828",
-  "#FF1B7B",
-  "#1BFFC8",
-  "#72FF1B",
-  "#D119FF",
-  "#1EC9FF",
-  "#FF6868",
-  "#D07D00",
+  ["#EEEEEE","#168bcc"],
+  ["#1BADFF","#168bcc"],
+  ["#FF2828","#168bcc"],
+  ["#FF1B7B","#168bcc"],
+  ["#1BFFC8","#168bcc"],
+  ["#72FF1B","#168bcc"],
+  ["#D119FF","#168bcc"],
+  ["#1EC9FF","#168bcc"],
+  ["#FF6868","#168bcc"],
+  ["#D07D00","#168bcc"],
 ];
 colors.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
@@ -62,7 +62,8 @@ const MainPage = () => {
         transformOrigin: `${Math.round(Math.random() * 100)}% ${Math.round(
           Math.random() * 100
         )}%`,
-        backgroundColor: `${e}`,
+        // backgroundColor: `${e}`,
+        backgroundImage: `linear-gradient(to bottom right, ${e[0]}, ${e[1]})`,
         transform: `rotate(${angle}deg) translate(${temp}px)`,
       },
       delay: i * 100,
