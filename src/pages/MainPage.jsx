@@ -152,16 +152,16 @@ const MainPage = () => {
         <div className="center">{currQue + 1}/10</div>
         <div
           // style={{ ...nextSpring }}
-          onClick={() => {
-            onClickNext();
-          }}
+          onClick={() => {onClickNext();}}
           className="right"
         >
           <img src={Next} alt="" />
         </div>
       </animated.div>
-
       <img className="profile" src={Profile} alt="" />
+      <div onClick={() => {onClickNext();}} className="test"></div>
+      <div onClick={() => {onClickNext();}} className="test0"></div>
+      <div onClick={() => {onClickNext();}} className="test2"></div>
     </FormContainer>
   );
 };
@@ -245,6 +245,31 @@ const FormContainer = styled.div`
     right: 5vh;
     z-index: 20;
     border-radius: 100%;
+  }
+  .test{
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:45vh;
+    backdrop-filter: blur(10px);
+  }
+  .test2{
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    width:100vw;
+    height:45vh;
+    backdrop-filter: blur(10px);
+  }
+  .test0{
+    position:absolute;
+    top:40vh;
+    left:0px;
+    background-color:rgba(65, 105, 225, 0.4);
+    width:100vw;
+    height:20vh;
+    backdrop-filter: blur(10px);
   }
 `;
 
