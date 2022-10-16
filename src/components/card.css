@@ -1,5 +1,5 @@
 .form-div {
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Varela Round', sans-serif;
     margin: 20px;
     background-color: white;
     height: 60vh;
@@ -44,7 +44,7 @@
     border: 2px solid black;
     transform: translateY(-5px);
     border-width: 0px 0px 2px 0px;
-    font-family: 'Comfortaa', cursive;
+    font-family: 'Varela Round', sans-serif;
     width: 7rem;
     color: rgb(74, 74, 74);
     font-size: 1.2rem;

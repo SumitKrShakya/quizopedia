@@ -221,7 +221,8 @@ const FormContainer = styled.div`
       padding-top: 6vh;
       font-weight: bolder;
       font-size: 1.3rem;
-      font-family: "Comfortaa", cursive;
+      font-family: 'Varela Round', sans-serif;
+
     }
     .right {
       // padding:0px 20px;
