@@ -13,15 +13,15 @@ data.reverse();
 
 const colors = [
   ["#EEEEEE","#168bcc"],
-  ["#1BADFF","#168bcc"],
-  ["#FF2828","#168bcc"],
-  ["#FF1B7B","#168bcc"],
-  ["#1BFFC8","#168bcc"],
-  ["#72FF1B","#168bcc"],
-  ["#D119FF","#168bcc"],
-  ["#1EC9FF","#168bcc"],
-  ["#FF6868","#168bcc"],
-  ["#D07D00","#168bcc"],
+  ["#1BADFF","#ca00a2"],
+  ["#FF2828","#ffce00"],
+  ["#FF1B7B","#ffffff"],
+  ["#1BFFC8","#094678"],
+  ["#72FF1B","#006430"],
+  ["#D119FF","#f9ff8f"],
+  ["#1EC9FF","#f9ff88"],
+  ["#FF6868","#ffa0a0"],
+  ["#D07D00","#ffffff"],
 ];
 colors.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
