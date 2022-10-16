@@ -25,34 +25,45 @@ const colors = [
 ];
 colors.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
-const dataSpring = colors.map((e, i) => {
-  return {
-    id: `colors${i}`,
-    from: {
-      y: -1000,
-      transform: `rotate(0deg) translate(${Math.round((Math.random()*1000)-500)}px,0px)`,
-      backgroundColor: "white",
-    },
-    to: {
-      y: 0,
-      x:0,
-      backgroundColor: `${e}`,
-      transform: `rotate(${Math.round(
-        Math.random() * 30 - 15
-      )}deg) translate(${Math.round(Math.random() * 40 - 20)}px,${Math.round(
-        Math.random() * 40 - 20
-      )}px)`,
-    },
-    delay: i * 100,
-  };
-});
+
 
 // console.log(data);
 
 const MainPage = () => {
   const [test, setTest] = useState(false)
-  const [currQue, setCurrQue] = useState(1);
-  console.log(currQue)
+  const [currQue, setCurrQue] = useState(0);
+
+  const dataSpring = colors.map((e, i) => {
+    let temp = `${Math.round(Math.random() * 40 - 20)}px,${Math.round(
+      Math.random() * 40 - 20
+    )}`
+
+    if(currQue > 9-i){
+      temp = `${i%2?"1000":"-1000"}px,${0}px`;
+    }
+
+    return {
+      id: `colors${i}`,
+      from: {
+        y: -1000,
+        transform: `rotate(0deg) translate(${Math.round((Math.random()*1000)-500)}px,0px)`,
+        backgroundColor: "white",
+      },
+      to: {
+        y: 0,
+        x:0,
+        transformOrigin: `${Math.round((Math.random()*100))}% ${Math.round((Math.random()*100))}%`,
+        backgroundColor: `${e}`,
+        transform: `rotate(${Math.round(
+          (Math.random() *  20)-10
+        )}deg) translate(${temp}px)`,
+      },
+      delay: i * 100,
+    };
+  });
+
+
+  console.log("spring",dataSpring.map((e)=>e.to.transformOrigin))
   const spring = useSprings(
     dataSpring.length,
     dataSpring.map(({ id, ...config }) => {
@@ -61,10 +72,14 @@ const MainPage = () => {
     })
   )
   const onClickNext = ()=>{
-    setCurrQue(2);
+    setCurrQue(currQue+1);
     
-    // colors.sort(() => (Math.random() > 0.5 ? 1 : -1));
   } 
+  const onClickPrev = ()=>{
+    setCurrQue(currQue-1);
+    
+  } 
+  const temp = [{transform:`0`}]
 
   return (
     <FormContainer>
@@ -78,20 +93,20 @@ const MainPage = () => {
           <animated.div
             style={{ ...spring }}
             className="form-border"
-            key={"card" + index}
+            key={"card-" + index}
           >
-            <Card index={index} data={data[index]} />
+            <Card currQue={currQue} index={index} data={data[index]} />
           </animated.div>
         ))}
       </div>
       <div className="bottom">
-        <div onClick={()=>{onClickNext()}} className="left">
+        <div onClick={()=>{onClickPrev()}} className="left">
           <img src={Prev} alt="" />
         </div>
         <div className="center">
-        {currQue}/10
+        {currQue+1}/10
         </div>
-        <div onClick={()=>{setTest(!test)}} className="right">
+        <div onClick={()=>{onClickNext()}} className="right">
           <img src={Next} alt="" />
         </div>
       </div>

@@ -3,8 +3,12 @@ import styled from "styled-components";
 import "./card.css";
 import Mcq from "./Mcq";
 
-const Card = ({ data, index }) => {
+const Card = ({ data, index ,currQue}) => {
   // console.log("data", data.type, data.que, data.opt);
+  console.log("card from card",currQue, index)
+
+  
+
   switch (data.type) {
     case "mcq":
       return (
