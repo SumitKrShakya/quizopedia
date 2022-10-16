@@ -6,7 +6,7 @@ import BG from "../images/bg.jpg";
 import Next from "../images/next.svg";
 import Prev from "../images/prev.svg";
 import Profile from "../images/profile.png";
-import { useSprings, animated, useSpring } from "react-spring";
+import { useSprings, animated, useSpring, config } from "react-spring";
 import "../components/card.css";
 
 data.reverse();
@@ -80,12 +80,15 @@ const MainPage = () => {
   // });
 
   const mainSpring = useSpring({
-    form:{
-      transform:``
+    from:{
+      transform:`rotateX(90deg)`,
+      transformOrigin:"50% 100%"
     },
     to:{
-      transform:``
-    }
+      transform:`rotateX(0deg)`,
+      transformOrigin:"50% 100%"
+    },
+    config:{mass:10}
   })
 
   // console.log("spring",dataSpring.map((e)=>e.to.transformOrigin))
@@ -136,7 +139,7 @@ const MainPage = () => {
           );
         })}
       </div>
-      <div className="bottom">
+      <animated.div style={mainSpring} className="bottom">
         <div
           onClick={() => {
             onClickPrev();
@@ -146,7 +149,7 @@ const MainPage = () => {
           <img src={Prev} alt="" />
         </div>
         <div className="center">{currQue + 1}/10</div>
-        <animated.div
+        <div
           // style={{ ...nextSpring }}
           onClick={() => {
             onClickNext();
@@ -154,8 +157,8 @@ const MainPage = () => {
           className="right"
         >
           <img src={Next} alt="" />
-        </animated.div>
-      </div>
+        </div>
+      </animated.div>
 
       <img className="profile" src={Profile} alt="" />
     </FormContainer>
