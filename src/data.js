@@ -33,22 +33,22 @@ export default [{
     ans: 1
 }, {
     type: "mcq",
-    que: "this is question 7",
-    opt: ["Options A", "Option B", "Option C", "Option D"],
+    que: "The three rational numbers between 3 and 4 are:",
+    opt: ["5/2,6/2,7/2", "13/4,14/4,15/4", "12/7,13/7,14/7", "11/4,12/4,13/4"],
     ans: 1
 }, {
     type: "mcq",
-    que: "this is question 8",
-    opt: ["Options A", "Option xB", "Option C", "Option D"],
+    que: "Which of the following is an irrational number?",
+    opt: ["6√6", "7√6", "4√12", "7√12"],
     ans: 1
 }, {
     type: "mcq",
-    que: "this is question 9",
-    opt: ["Options A", "Option B", "Option C", "Option D"],
+    que: "√12 X √15 is equal to:",
+    opt: ["5√6", "6√5", "10√5", "√25"],
     ans: 1
 }, {
     type: "mcq",
-    que: "this is question 10",
-    opt: ["Options A", "Option B", "Option C", "Option D"],
-    ans: 1
+    que: "What would be the denominator after rationalizing 7/(5√3 - 5√2)?",
+    opt: ["19", "20", "25", "None of these"],
+    ans: 3
 }];

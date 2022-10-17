@@ -74,10 +74,6 @@ const ResultCard = ({ data, answersMarked, name }) => {
     <div className="main">
       <div className="result-box">
         <div className="score">
-          <div
-            style={{ transform: `rotate(10deg)` }}
-            className="triangle-down"
-          ></div>
           {[...Array(20)].map((e, i) => {
             return (
               <div
@@ -101,8 +97,6 @@ const ResultCard = ({ data, answersMarked, name }) => {
                   offset={Math.random() * 0.1}
                   style={{
                     display: "flex",
-                    // justifyContent: "center",
-                    // alignItems: "center",
                     position: "relative",
                   }}
                 >

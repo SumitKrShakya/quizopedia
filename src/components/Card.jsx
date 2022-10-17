@@ -32,6 +32,7 @@ const Card = ({ data, index, currQue, answerHandler }) => {
     case "mcq":
       return (
         <div className="form-div">
+          <div className="que">Question {currQue+1}</div>
           <div className="que">{data.que}</div>
           <div className="options">
             {data.opt.map((e, i) => {
@@ -42,7 +43,6 @@ const Card = ({ data, index, currQue, answerHandler }) => {
                 >
                   <input
                   key={`option${index}-${i}input`}
-
                     onChange={() => handleMcqChange(i)}
                     className="mcq-option"
                     type="radio"
@@ -60,6 +60,8 @@ const Card = ({ data, index, currQue, answerHandler }) => {
     case "mcc":
       return (
         <div className="form-div">
+          <div className="que">Question {currQue+1}</div>
+
           <div className="que">{data.que}</div>
           <div className="options">
             {data.opt.map((e, i) => {
@@ -87,6 +89,7 @@ const Card = ({ data, index, currQue, answerHandler }) => {
     case "fill":
       return (
         <div className="form-div">
+          <div className="que">Question {currQue+1}</div>
           <div className="que">
             {
             arr.map((e, i) => {

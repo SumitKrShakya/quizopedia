@@ -203,7 +203,6 @@ const MainPage = () => {
       </div>
       <div className="cards-container">
         {spring.map((spring, index) => {
-          // console.log("card-" + index, "cards-" + index);
           return (
             <animated.div
               style={{ ...spring }}
@@ -302,6 +301,13 @@ const MainPage = () => {
       )}
 
       {currQue >= 10 ? <ResultCard name={name} data={data} answersMarked={answer} /> : null}
+      {start?(
+       <div className="status">
+        <div style={{width:`${(currQue+1)*10}%`,backgroundColor:`rgba(0,128,0,${(currQue+1)*0.1})`}} className="bar">
+          
+        </div>
+       </div> 
+      ):null}
     </FormContainer>
   );
 };
@@ -472,6 +478,22 @@ const FormContainer = styled.div`
           }
         }
       }
+    }
+  }
+  .status{
+    position:absolute;
+    left:20vw;
+    // right:0px;
+    bottom:10px;
+    width:60vw;
+    height:20px;
+    background-color:white;
+    border-radius:20px;
+    box-shadow:0px 0px 10px rgba(0,0,0,0.5);
+    .bar{
+      transition:all 0.5s ease-in-out;
+      border-radius:20px;
+      height:100%;
     }
   }
 `;
