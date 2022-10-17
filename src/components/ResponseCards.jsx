@@ -1,33 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./card.css";
+import Mcq from "./Mcq";
 
-const Card = ({ data, index, currQue, answerHandler }) => {
-  const [ansArr, setAnsArr] = useState(Array(data.ans.length).fill(false));
-  const handleMcqChange = (e) => {
-    answerHandler(index, e);
-  };
-  const handleMccChange = (e) => {
-    let temp = ansArr;
-    temp[e.target.value] = e.target.checked;
-    answerHandler(index, temp);
-    setAnsArr(temp);
-  };
+const ResponseCards = ({ data, response }) => {
+  console.log("ResponseCards",data, response);
+  const marksObtained = () => {};
+  useEffect(() => {
+    marksObtained();
+  }, []);
+  
 
   let arr = data.que.split("");
-
-  const handleFillChange = (e)=>{
-    // console.log(e.target.value,e.target.name)
-    let temp = ansArr;
-    temp[e.target.name] = e.target.value;
-    answerHandler(index, temp);
-    setAnsArr(temp);
-  }
-
   let keyOfFill = 0;
-
-
-
+  console.log("here->",data.type)
   switch (data.type) {
     case "mcq":
       return (
@@ -36,18 +22,13 @@ const Card = ({ data, index, currQue, answerHandler }) => {
           <div className="options">
             {data.opt.map((e, i) => {
               return (
-                <label
-                  style={{ cursor: "pointer" }}
-                  key={`option${index}-${i}`}
-                >
+                <label style={{ cursor: "pointer" }} key={`option${i}-${i}`}>
                   <input
-                  key={`option${index}-${i}input`}
-
-                    onChange={() => handleMcqChange(i)}
+                    key={`option${i}-${i}input`}
                     className="mcq-option"
                     type="radio"
                     name="option"
-                    id={`option${index}-${i}`}
+                    id={`option${i}-${i}`}
                   />
                   {e}
                 </label>
@@ -64,18 +45,14 @@ const Card = ({ data, index, currQue, answerHandler }) => {
           <div className="options">
             {data.opt.map((e, i) => {
               return (
-                <label
-                  style={{ cursor: "pointer" }}
-                  key={`option${index}-${i}`}
-                >
+                <label style={{ cursor: "pointer" }} key={`option${i}-${i}`}>
                   <input
                     className="mcq-option"
                     type="checkbox"
                     name="option"
                     value={`${i}`}
-                    key={`option${index}-${i}input`}
-                    onChange={handleMccChange}
-                    id={`option${index}-${i}`}
+                    key={`option${i}-${i}input`}
+                    id={`option${i}-${i}`}
                   />
                   {e}
                 </label>
@@ -88,12 +65,18 @@ const Card = ({ data, index, currQue, answerHandler }) => {
       return (
         <div className="form-div">
           <div className="que">
-            {
-            arr.map((e, i) => {
+            {arr.map((e, i) => {
               if (e !== "_") {
                 return e;
               } else {
-                return <input key={`${keyOfFill}inputKey`} name={keyOfFill++} onChange={handleFillChange} type={data.inputType} className="input-option" />;
+                return (
+                  <input
+                    key={`${keyOfFill}inputKey`}
+                    name={keyOfFill++}
+                    type={data.inputType}
+                    className="input-option"
+                  />
+                );
               }
             })}
           </div>
@@ -105,4 +88,4 @@ const Card = ({ data, index, currQue, answerHandler }) => {
   return <div className="form-div"></div>;
 };
 
-export default Card;
+export default ResponseCards;
