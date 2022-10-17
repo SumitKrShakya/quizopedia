@@ -5,8 +5,6 @@
     height: 60vh;
     width: 50vw;
     border: 1px solid rgba(0, 0, 0, 0);
-    /* border-radius: 5vw 20vw 0vw 10vw; */
-    /* border-radius: 50% 20% / 10% 40%; */
     border-radius: 11% 89% 16% 84% / 86% 12% 88% 14%;
     box-shadow: -10px -10px 6px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -15,7 +13,6 @@
     flex-direction: column;
     padding: 20px;
     font-weight: 900;
-    /* color: rgba(65, 105, 225, 0.4); */
 }
 
 .form-border {
@@ -59,9 +56,3 @@ input:focus {
     outline: none;
     color: green;
 }
-
-
-/* .mcq-option:checked~.rad-text {
-        color: hsl(0, 0%, 40%);
-      }
-} */

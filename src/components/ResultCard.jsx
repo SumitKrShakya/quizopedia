@@ -5,36 +5,33 @@ import ResponseCards from "./ResponseCards";
 import Trophy from "../images/trophy.png";
 
 const ResultCard = ({ data, answersMarked, name }) => {
-  console.log("ResultCard", data, answersMarked);
+  console.log("ResultCard", data, "answersMarked", answersMarked);
   const [marks, setMarks] = useState(0);
   const [refresh, setRefresh] = useState(false);
-
-  // console.log(
-  //   data.map((e) => e.ans),
-  //   "answers",
-  //   answersMarked
-  // );
 
   useEffect(() => {
     let tempMarks = 0;
     const marksObtained = () => {
       data.map((e, i, arr) => {
+        console.log(e.ans, answersMarked[i]);
         switch (e.type) {
           case "mcq":
             if (answersMarked[i] === undefined) break;
-            if (e.ans == answersMarked[i]) tempMarks++;
+            if (e.ans === answersMarked[i]) tempMarks++;
             break;
           case "mcc":
             if (answersMarked[i] === undefined) {
               break;
             }
-            if (e.ans.join() == answersMarked[i].join()) tempMarks++;
+            if (e.ans.join() === answersMarked[i].join()) tempMarks++;
             break;
           case "fill":
+            console.log("this is where i find ans", e.ans, answersMarked[i], i);
+
             if (answersMarked[i] === undefined) {
               break;
             }
-            if (e.ans.join() == answersMarked[i].join()) tempMarks++;
+            if (e.ans.join() === answersMarked[i].join()) tempMarks++;
             break;
 
           default:
@@ -68,16 +65,19 @@ const ResultCard = ({ data, answersMarked, name }) => {
   }, []);
 
   console.log("last", data);
-  // let offset = [0,0.5,1,1.5,2,2.5,3,3.5,4,4.5]
 
   return (
     <div className="main">
       <div className="result-box">
         <div className="score">
+          {/* <div
+            style={{ transform: `rotate(10deg)` }}
+            className="triangle-down"
+          ></div> */}
           {[...Array(20)].map((e, i) => {
             return (
               <div
-                style={{ transform: `rotate(${i*20}deg) translateX(20%)` }}
+                style={{ transform: `rotate(${i * 20}deg) translateX(20%)` }}
                 className="triangle-down"
               ></div>
             );

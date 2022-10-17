@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import data from "../data";
 import styled from "styled-components";
-import BG from "../images/bg.jpg";
 import Next from "../images/next.svg";
 import Prev from "../images/prev.svg";
 import Profile from "../images/profile.png";
-import { useSprings, animated, useSpring, config } from "react-spring";
+import { useSprings, animated, useSpring } from "react-spring";
 import "../components/card.css";
 import ResultCard from "../components/ResultCard";
-
 
 
 data.reverse();
@@ -28,10 +26,7 @@ const colors = [
 ];
 colors.sort(() => (Math.random() > 0.5 ? 1 : -1));
 
-// console.log(data);
-
 const MainPage = () => {
-  const [test, setTest] = useState(false);
   const [currQue, setCurrQue] = useState(0);
   const [answer, setAnswer] = useState(Array(10).fill(undefined));
   const [start, setStart] = useState(false);
@@ -62,7 +57,6 @@ const MainPage = () => {
     setStart(true);
   };
 
-  // console.log(answer);
   let dataSpring = colors.map((e, i) => {
     let temp = `${Math.round(Math.random() * 40 - 20)}px,${Math.round(
       Math.random() * 40 - 20
@@ -77,7 +71,7 @@ const MainPage = () => {
       angle = `0`;
     }
     let delay = i * 100;
-    if (currQue == 0) {
+    if (currQue === 0) {
       delay += 1000;
     }
 
@@ -96,7 +90,6 @@ const MainPage = () => {
         transformOrigin: `${Math.round(Math.random() * 100)}% ${Math.round(
           Math.random() * 100
         )}%`,
-        // backgroundColor: `${e}`,
         backgroundImage: `linear-gradient(to bottom right, ${e[0]}, ${e[1]})`,
         transform: `rotate(${angle}deg) translate(${temp}px)`,
       },
@@ -119,20 +112,12 @@ const MainPage = () => {
     }
     return {
       id: `colors${i}`,
-      // from: {
-      //   y: -1000,
-      //   transform: `rotate(0deg) translate(${Math.round(
-      //     Math.random() * 1000 - 500
-      //   )}px,0px)`,
-      //   backgroundColor: "white",
-      // },
       to: {
         y: 0,
         x: 0,
         transformOrigin: `${Math.round(Math.random() * 100)}% ${Math.round(
           Math.random() * 100
         )}%`,
-        // backgroundColor: `${e}`,
         backgroundImage: `linear-gradient(to bottom right, ${e[0]}, ${e[1]})`,
         transform: `rotate(${angle}deg) translate(${temp}px)`,
       },
@@ -140,7 +125,7 @@ const MainPage = () => {
     };
   });
 
-  if (start == false) {
+  if (start === false) {
     dataSpring = startGameSpring;
   }
 
@@ -151,15 +136,7 @@ const MainPage = () => {
     })
   );
 
-  // const nextSpring = useSpring({
-  //   from: {
-  //     y: "150px",
-  //   },
-  //   to: {
-  //     y: "0vh",
-  //   },
-  //   config: { mass: 10, tention:10 },
-  // });
+
   let mainSpringDelay = submitfooter ? 0 : 3000;
   const mainSpring = useSpring({
     from: {
@@ -239,7 +216,6 @@ const MainPage = () => {
           </div>
           {currQue !== 9 ? (
             <div
-              // style={{ ...nextSpring }}
               onClick={() => {
                 onClickNext();
               }}
@@ -249,7 +225,6 @@ const MainPage = () => {
             </div>
           ) : (
             <div
-              // style={{ ...nextSpring }}
               onClick={() => {
                 submitHandler();
               }}
@@ -342,9 +317,6 @@ const FormContainer = styled.div`
     position: relative;
   }
   .bottom {
-    // background-color:rgba(255,255,255,0.7);
-    // backdrop-filter: blur(10px);
-    // box-shadow:0px 0px 10px white;
     width: 100vw;
     height: 15vh;
     position: absolute;
@@ -352,9 +324,7 @@ const FormContainer = styled.div`
     left: 0px;
     display: flex;
     .left {
-      // padding:0px 20px;
       flex: 1;
-      // background-color:red;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -376,7 +346,6 @@ const FormContainer = styled.div`
       font-size: 2.5rem;
       font-family: "Varela Round", sans-serif;
       flex: 1;
-      // background-color:red;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -385,9 +354,7 @@ const FormContainer = styled.div`
       }
     }
     .right {
-      // padding:0px 20px;
       flex: 1;
-      // background-color:red;
       text-align: center;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
@@ -425,7 +392,6 @@ const FormContainer = styled.div`
       font-family: "Varela Round", sans-serif;
       width: 400px;
       height: 500px;
-      // border-radius:20px;
       background-color: rgba(255, 255, 255, 1);
       box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
         rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -437,7 +403,6 @@ const FormContainer = styled.div`
       flex-direction: column;
       .head {
         font-size: 3rem;
-        // transform:scale(3);
         text-transform: uppercase;
         background: linear-gradient(to right, #30cfd0 0%, #330867 100%);
         -webkit-background-clip: text;
@@ -461,8 +426,6 @@ const FormContainer = styled.div`
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             cursor: pointer;
-            // border-image: linear-gradient(to right, #30cfd0 0%, #330867 100%);
-            // border-color: white;
           }
         }
         input {
@@ -483,7 +446,6 @@ const FormContainer = styled.div`
   .status{
     position:absolute;
     left:20vw;
-    // right:0px;
     bottom:10px;
     width:60vw;
     height:20px;

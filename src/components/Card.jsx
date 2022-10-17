@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import "./card.css";
 
 const Card = ({ data, index, currQue, answerHandler }) => {
@@ -17,7 +16,6 @@ const Card = ({ data, index, currQue, answerHandler }) => {
   let arr = data.que.split("");
 
   const handleFillChange = (e)=>{
-    // console.log(e.target.value,e.target.name)
     let temp = ansArr;
     temp[e.target.name] = e.target.value;
     answerHandler(index, temp);
@@ -26,13 +24,11 @@ const Card = ({ data, index, currQue, answerHandler }) => {
 
   let keyOfFill = 0;
 
-
-
   switch (data.type) {
     case "mcq":
       return (
         <div className="form-div">
-          <div className="que">Question {currQue+1}</div>
+          <div className="que">Question {10-(index)}</div>
           <div className="que">{data.que}</div>
           <div className="options">
             {data.opt.map((e, i) => {
@@ -60,8 +56,7 @@ const Card = ({ data, index, currQue, answerHandler }) => {
     case "mcc":
       return (
         <div className="form-div">
-          <div className="que">Question {currQue+1}</div>
-
+          <div className="que">Question {10-(index)}</div>
           <div className="que">{data.que}</div>
           <div className="options">
             {data.opt.map((e, i) => {
@@ -89,7 +84,7 @@ const Card = ({ data, index, currQue, answerHandler }) => {
     case "fill":
       return (
         <div className="form-div">
-          <div className="que">Question {currQue+1}</div>
+          <div className="que">Question {10-(index)}</div>
           <div className="que">
             {
             arr.map((e, i) => {

@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-// import "./card.css";
 import "./result.css";
 
-// import Mcq from "./Mcq";
 
 const ResponseCards = ({ data, response, i }) => {
-  // console.log("ResponseCards",data, response);
+  console.log("ResponseCards",data, response,i);
   const marksObtained = () => {};
   useEffect(() => {
     marksObtained();
   }, []);
   let calls = 0;
   let arr = data.que.split("");
-  let keyOfFill = 0;
-  // console.log("here->",data.type)
   switch (data.type) {
     case "mcq":
       return (
@@ -56,6 +51,7 @@ const ResponseCards = ({ data, response, i }) => {
           <div className="options">
             {data.opt.map((e, i) => {
               let style = {};
+              console.log("FINAL",response)
               if (response !== undefined) {
                 if (response[i] === true && e.ans[i] === false) {
                   style = {
