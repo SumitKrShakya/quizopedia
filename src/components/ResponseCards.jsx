@@ -1,35 +1,44 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./card.css";
-import Mcq from "./Mcq";
+// import "./card.css";
+import "./result.css";
 
-const ResponseCards = ({ data, response }) => {
-  console.log("ResponseCards",data, response);
+// import Mcq from "./Mcq";
+
+const ResponseCards = ({ data, response, i }) => {
+  // console.log("ResponseCards",data, response);
   const marksObtained = () => {};
   useEffect(() => {
     marksObtained();
   }, []);
-  
-
+  let calls = 0;
   let arr = data.que.split("");
   let keyOfFill = 0;
-  console.log("here->",data.type)
+  // console.log("here->",data.type)
   switch (data.type) {
     case "mcq":
       return (
-        <div className="form-div">
-          <div className="que">{data.que}</div>
+        <div className="form-div-r">
+          <div className="que-r">Question {10 - i}</div>
+
+          <div className="que-r">{data.que}</div>
           <div className="options">
             {data.opt.map((e, i) => {
+              let style = {};
+              if (response !== undefined) {
+                if (response[i] === i && e.ans !== i) {
+                  style = {
+                    color: "red",
+                  };
+                }
+              }
+              if (data.ans === i) {
+                style = {
+                  color: "green",
+                };
+              }
               return (
-                <label style={{ cursor: "pointer" }} key={`option${i}-${i}`}>
-                  <input
-                    key={`option${i}-${i}input`}
-                    className="mcq-option"
-                    type="radio"
-                    name="option"
-                    id={`option${i}-${i}`}
-                  />
+                <label style={style} key={`option${i}-${i}`}>
                   {e}
                 </label>
               );
@@ -40,21 +49,28 @@ const ResponseCards = ({ data, response }) => {
 
     case "mcc":
       return (
-        <div className="form-div">
-          <div className="que">{data.que}</div>
+        <div className="form-div-r">
+          
+          <div className="que-r">Question {10 - i}</div>
+          <div className="que-r">{data.que}</div>
           <div className="options">
             {data.opt.map((e, i) => {
+              let style = {};
+              if (response !== undefined) {
+                if (response[i] === true && e.ans[i] === false) {
+                  style = {
+                    color: "red",
+                  };
+                }
+              }
+              if (data.ans[i] === true) {
+                style = {
+                  color: "green",
+                };
+              }
               return (
-                <label style={{ cursor: "pointer" }} key={`option${i}-${i}`}>
-                  <input
-                    className="mcq-option"
-                    type="checkbox"
-                    name="option"
-                    value={`${i}`}
-                    key={`option${i}-${i}input`}
-                    id={`option${i}-${i}`}
-                  />
-                  {e}
+                <label style={style} key={`option${i}-${i}`}>
+                  {e}this
                 </label>
               );
             })}
@@ -63,20 +79,14 @@ const ResponseCards = ({ data, response }) => {
       );
     case "fill":
       return (
-        <div className="form-div">
-          <div className="que">
+        <div className="form-div-r">
+          <div className="que-r">Question {10 - i}</div>
+          <div className="que-r">
             {arr.map((e, i) => {
               if (e !== "_") {
-                return e;
+                return <span>{e}</span> ;
               } else {
-                return (
-                  <input
-                    key={`${keyOfFill}inputKey`}
-                    name={keyOfFill++}
-                    type={data.inputType}
-                    className="input-option"
-                  />
-                );
+                return <span style={{color:"green"}}>{data.ans[calls++]}</span>;
               }
             })}
           </div>

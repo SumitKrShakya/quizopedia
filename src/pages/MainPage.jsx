@@ -10,6 +10,8 @@ import { useSprings, animated, useSpring, config } from "react-spring";
 import "../components/card.css";
 import ResultCard from "../components/ResultCard";
 
+
+
 data.reverse();
 
 const colors = [
@@ -34,6 +36,11 @@ const MainPage = () => {
   const [answer, setAnswer] = useState(Array(10).fill(undefined));
   const [start, setStart] = useState(false);
   const [submitfooter, setSubmitfooter] = useState(false);
+  const [name, setName] = useState(undefined)
+
+  const setNameHandler = (e) => {
+    setName(e.target.value);
+  }
 
   useEffect(() => {
     if (start === true) {
@@ -276,6 +283,7 @@ const MainPage = () => {
                 type="text"
                 className="input-option"
                 placeholder="Enter Username"
+                onChange={setNameHandler}
               />
               <br />
               <br />
@@ -293,7 +301,7 @@ const MainPage = () => {
         ""
       )}
 
-      {currQue >= 10 ? <ResultCard data={data} answersMarked={answer} /> : null}
+      {currQue >= 10 ? <ResultCard name={name} data={data} answersMarked={answer} /> : null}
     </FormContainer>
   );
 };

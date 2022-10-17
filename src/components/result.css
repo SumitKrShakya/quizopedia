@@ -12,6 +12,7 @@
     flex-direction: column;
     padding: 20px;
     font-weight: 900;
+    font-size: 0.5rem!important;
 }
 
 .result-box {
@@ -29,11 +30,78 @@
     font-weight: 900;
 }
 
+.form-div-r {
+    font-family: 'Varela Round', sans-serif;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.759);
+    height: 50vh;
+    width: 50vw;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blurr(100px);
+    /* border-radius: 5vw 20vw 0vw 10vw; */
+    /* border-radius: 50% 20% / 10% 40%; */
+    /* border-radius: 11% 89% 16% 84% / 86% 12% 88% 14%; */
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 20px;
+    /* font-weight: 900; */
+}
+
+.que-r {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
 .score {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
     flex: 1;
     border-radius: 10px;
     height: 100%;
     background-color: rgb(77, 77, 77);
+    animation: identifier 10s ease-in-out infinite;
+}
+
+.score>.duv {
+    height: 30%;
+}
+
+.score>div>img {
+    height: 100%;
+    animation: name 6s infinite ease-in-out;
+}
+
+.congo {
+    font-size: 2rem;
+    color: white;
+    height: 10px;
+}
+
+.score-res {
+    font-size: 1.5rem;
+    color: white;
+    height: 10px;
+}
+
+.triangle-down {
+    transform: scaleY(1);
+    left: 45%;
+    bottom: 50%;
+    transform-origin: 100% 100%;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 290px solid rgba(255, 255, 255, 0.2);
 }
 
 .result {
@@ -44,7 +112,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 
@@ -69,3 +137,47 @@
  ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+@keyframes identifier {
+    0% {
+        background-color: #0f6da4;
+    }
+    20% {
+        background-color: #FF1B7B;
+    }
+    40% {
+        background-color: #00ac84;
+    }
+    60% {
+        background-color: #3d9f00;
+    }
+    80% {
+        background-color: #D07D00;
+    }
+    100% {
+        background-color: #0f6da4;
+    }
+}
+
+@keyframes name {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/* #1BADFF
+#FF2828
+#FF1B7B
+#1BFFC8
+#72FF1B
+#D119FF
+#1EC9FF
+#FF6868
+#D07D00 */
