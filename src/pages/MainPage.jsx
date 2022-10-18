@@ -4,7 +4,7 @@ import data from "../data";
 import styled from "styled-components";
 import Next from "../images/next.svg";
 import Prev from "../images/prev.svg";
-import Profile from "../images/profile.png";
+import Profile from "../images/profile.jpg";
 import { useSprings, animated, useSpring } from "react-spring";
 import "../components/card.css";
 import ResultCard from "../components/ResultCard";
